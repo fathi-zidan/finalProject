@@ -140,7 +140,7 @@ const UpdatePatient = async(patientId,updatedData)=>{
     await fetchBloodStock();
     await fetchDonorHistoryStatus();
     await getDonationHistory();
-    await fetchPatientHistoryStatus ();
+    await fetchPatientHistoryStatus();
     await getBloodRequestHistory();
     // await UpdateDonor();
     // await UpdatePatient();
@@ -157,7 +157,8 @@ const UpdatePatient = async(patientId,updatedData)=>{
   return (
     <DataContext.Provider value={{ donors, patients, fetchPatients, fetchDonors, 
     bloodStock, setBloodStock, fetchBloodStock, totals,donorTotals,
-    history,getDonationHistory,bloodHistory,getBloodRequestHistory,patientTotals,UpdateDonor,UpdatePatient }}>
+    history,getDonationHistory,bloodHistory,getBloodRequestHistory,
+    patientTotals,UpdateDonor,UpdatePatient,fetchDonorHistoryStatus,fetchPatientHistoryStatus }}>
       {children}
     </DataContext.Provider>
   );
