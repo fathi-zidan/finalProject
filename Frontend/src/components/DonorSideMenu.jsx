@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 function DonorSideMenu() {
   return (
     <section className='flex flex-col items-start justify-start
-    bg-sideMenuColor text-sideMenuTextColor w-[180px] h-[90vh] pt-2 '>
+    bg-sideMenuColor text-sideMenuTextColor w-[180px] h-[100vh] pt-2 '>
 
             <div className='flex items-center gap-x-1
     border-sideMenuTextColor border-t-2 pl-2 w-full h-[40px] hover:font-bold  

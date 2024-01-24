@@ -29,7 +29,7 @@ function DonationForm() {
                 diseases: diseasesRef.current.value
             };
             console.log("Blood Donation Data:", bloodDonation);
-            const response = await axios.post('http://localhost:3000/donors/donateBlood', bloodDonation);
+            const response = await axios.post('https://blood-bank-j5i9.onrender.com/donors/donateBlood', bloodDonation);
             console.log(response.data)
             console.log("Response from Server:", response.data);
             navigate('/donor/donationHistory')

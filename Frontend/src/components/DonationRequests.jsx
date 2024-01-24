@@ -11,7 +11,7 @@ function DonationRequests() {
   
   const handleApprove = async (donorId, requestId) => {
     try {
-      await axios.put('http://localhost:3000/Admin/approval', {
+      await axios.put('https://blood-bank-j5i9.onrender.com/Admin/approval', {
         requestId,
         donorId,
         approvalStatus: 'Approved'
@@ -40,7 +40,7 @@ function DonationRequests() {
 
   const handleReject = async (donorId, requestId) => {
     try {
-      await axios.put('http://localhost:3000/Admin/approval', {
+      await axios.put('https://blood-bank-j5i9.onrender.com/Admin/approval', {
         requestId,
         donorId,
         approvalStatus: 'Rejected'
@@ -67,7 +67,7 @@ function DonationRequests() {
   };
 
   return (
-    <div className="w-[100%]">
+    <div className="w-[100%] mt-2">
       <table className="w-full overflow-x-auto table-fixed border-collapse shadow-md rounded-lg whitespace-nowrap mx-auto max-w-[97%]">
         <thead className="bg-gray-300 text-gray-800">
           <tr>

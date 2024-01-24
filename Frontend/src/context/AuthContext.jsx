@@ -12,7 +12,7 @@ function AuthProvider({ children }) {
 
     const AdminLogIn = async (user) => {
         try {
-            const res = await axios.post('http://localhost:3000/Admin/login', user)
+            const res = await axios.post('https://blood-bank-j5i9.onrender.com/Admin/login', user)
             console.log(res.data);
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("user", JSON.stringify(res.data));
@@ -24,7 +24,7 @@ function AuthProvider({ children }) {
     }
     const DonorLogIn = async (donor) => {
         try {
-            const res = await axios.post('http://localhost:3000/donors/login', donor)
+            const res = await axios.post('https://blood-bank-j5i9.onrender.com/donors/login', donor)
             console.log(res.data);
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("donor", JSON.stringify(res.data));
@@ -37,7 +37,7 @@ function AuthProvider({ children }) {
     }
     const PatientLogIn = async (patient) => {
         try {
-            const res = await axios.post('http://localhost:3000/patients/login', patient)
+            const res = await axios.post('https://blood-bank-j5i9.onrender.com/patients/login', patient)
             console.log(res.data);
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("patient", JSON.stringify(res.data));
@@ -51,7 +51,7 @@ function AuthProvider({ children }) {
     const createDonor = async (donor) => {
         try {
             const res = await axios.post(
-                "http://localhost:3000/donors/create",
+                "https://blood-bank-j5i9.onrender.com/donors/create",
                 donor
             );
             console.log(res.data);
@@ -63,7 +63,7 @@ function AuthProvider({ children }) {
     const createPatient = async (patient) => {
         try {
             const res = await axios.post(
-                "http://localhost:3000/patients/create",
+                "https://blood-bank-j5i9.onrender.com/patients/create",
                 patient
             );
             console.log(res.data);

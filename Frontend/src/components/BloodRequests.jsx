@@ -9,7 +9,7 @@ function BloodRequests() {
   const [modalMessage, setModalMessage] = useState('');  
   const handleApprove = async (patientId, requestId) => {
     try {
-      await axios.put('http://localhost:3000/Admin/bloodRequestApproval', {
+      await axios.put('https://blood-bank-j5i9.onrender.com/Admin/bloodRequestApproval', {
         requestId,
         patientId,
         approvalStatus: 'Approved'
@@ -36,7 +36,7 @@ function BloodRequests() {
 
   const handleReject = async (patientId, requestId) => {
     try {
-      await axios.put('http://localhost:3000/Admin/bloodRequestApproval', {
+      await axios.put('https://blood-bank-j5i9.onrender.com/Admin/bloodRequestApproval', {
         requestId,
         patientId,
         approvalStatus: 'Rejected'
@@ -62,7 +62,7 @@ function BloodRequests() {
   };
 
   return (
-    <div className="w-[100%]">
+    <div className="w-[100%] mt-2">
       <table className="w-full overflow-x-auto table-fixed border-collapse shadow-md rounded-lg whitespace-nowrap mx-auto max-w-[95%]">
         <thead className="bg-gray-300 text-gray-800">
           <tr>

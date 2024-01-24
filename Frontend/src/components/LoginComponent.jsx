@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef,useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaHeartbeat, FaHospital, FaHome, FaBed } from "react-icons/fa";
 import FullDashBoard from '../components/FullDashBoard.jsx';
@@ -8,6 +8,8 @@ function LoginComponent({ userType }) {
     const emailRef = useRef();
     const passwordRef = useRef();
     const { DonorLogIn, PatientLogIn } = useLogInContext();
+    const [showModal, setShowModal] = useState(false)
+    const [modalMessage, setModalMessage] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,12 +18,19 @@ function LoginComponent({ userType }) {
             email: emailRef.current.value,
             password: passwordRef.current.value,
         };
-
-        if (userType === 'donor') {
-            await DonorLogIn(user);
-        } else if (userType === 'patient') {
-            await PatientLogIn(user);
+        try {
+            if (userType === 'donor') {
+                await DonorLogIn(user);
+            } else if (userType === 'patient') {
+                await PatientLogIn(user);
+            }
+        } catch (error) {
+            console.log("Error in login", error);
+            setModalMessage('Invalid credentials. Please try again.');
+            setShowModal(true);
         }
+
+
     };
 
     return (
@@ -75,9 +84,23 @@ function LoginComponent({ userType }) {
                     </div>
 
                     <div className='mt-3'>
-                        Does not have an Account ? <Link to ={`/${userType}/signUp`} className='text-blue-500 hover:text-blue-900'>click here to register</Link>
+                        Does not have an Account ? <Link to={`/${userType}/signUp`} className='text-blue-500 hover:text-blue-900'>click here to register</Link>
                     </div>
+                   
                 </form>
+                {showModal && (
+                        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center shadow-xl">
+                            <div className={`flex flex-col items-center justify-center gap-y-2 bg-white p-4 rounded shadow-xl`}>
+                                <p className='font-bold'>
+                                    {modalMessage}
+                                </p>
+                                <div>
+                                    <button className='flex items-center justify-center p-2 w-[70px] 
+                      rounded-md bg-red-600 font-bold text-white' onClick={() => setShowModal(false)}>Ok</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
             </section>
         </section>
     );

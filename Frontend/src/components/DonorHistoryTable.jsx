@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
 import { useDataContext } from '../context/DataContext.jsx';
 import axios from 'axios';
 
 function DonorHistoryTable() {
-    const { history } = useDataContext();
+    const { history,getDonationHistory } = useDataContext();
+    useEffect(()=>{
+        getDonationHistory();
+    },[])
 
     const getStatusClassName = (status) => {
         switch (status) {
@@ -20,8 +23,8 @@ function DonorHistoryTable() {
     };
 
     return (
-        <div className="w-[100%]">
-            <table className="w-full overflow-x-auto table-fixed border-collapse shadow-md rounded-lg whitespace-nowrap mx-auto max-w-[90%]">
+        <div className="w-[100%] mt-2">
+            <table className="w-full overflow-x-auto table-fixed border-collapse shadow-md rounded-lg whitespace-nowrap mx-auto max-w-[90%] max-h-[90%]">
                 <thead className="bg-gray-300 text-gray-800">
                     <tr>
                         <th className="p-4">Diseases</th>

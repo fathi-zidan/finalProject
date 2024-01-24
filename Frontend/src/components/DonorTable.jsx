@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect} from 'react';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
 import { useDataContext } from '../context/DataContext.jsx';
 import DonorEditModal from './DonorEditModal.jsx';
@@ -6,6 +6,10 @@ import axios from 'axios';
 
 function DonorTable({ userType }) {
   const { donors, patients, UpdatePatient, UpdateDonor, fetchDonors, fetchPatients } = useDataContext();
+    useEffect(()=>{
+        fetchDonors();
+        fetchPatients();
+    },[])
   const data = userType === 'donor' ? donors : patients;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,10 +22,10 @@ function DonorTable({ userType }) {
   const handleDeleteClick = async (userId) => {
     try {
       if (userType === 'donor') {
-        await axios.delete(`http://localhost:3000/donors/donor/${userId}`);
+        await axios.delete(`https://blood-bank-j5i9.onrender.com/donors/donor/${userId}`);
         fetchDonors();
       } else {
-        await axios.delete(`http://localhost:3000/patients/Patient/${userId}`);
+        await axios.delete(`https://blood-bank-j5i9.onrender.com/patients/Patient/${userId}`);
         fetchPatients();
       }
     } catch (error) {
@@ -55,7 +59,7 @@ function DonorTable({ userType }) {
     setSelectedUser(null);
   };
   return (
-    <div className="w-[100%]">
+    <div className="w-[100%] mt-2">
       <table className="w-full overflow-x-auto table-fixed border-collapse shadow-md rounded-lg whitespace-nowrap mx-auto max-w-[90%]">
         <thead className="bg-gray-300 text-gray-800">
           <tr>
@@ -68,10 +72,10 @@ function DonorTable({ userType }) {
           </tr>
         </thead>
         <tbody>
-          {console.log(data)}
+          {/* {console.log(data)} */}
           {data.map((item) => (
             <tr key={item._id} className="hover:bg-gray-200">
-              {console.log(item)}
+              {/* {console.log(item)} */}
               <td className="text-center p-4">{item.name}</td>
               <td className="text-center flex justify-center p-4">
                 <img

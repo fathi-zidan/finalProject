@@ -22,7 +22,7 @@ const DataProvider = ({ children }) => {
 
   const fetchDonors = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/donors/donors');
+      const response = await axios.get('https://blood-bank-j5i9.onrender.com/donors/donors');
       setDonors(response.data);
     } catch (error) {
       console.error('Error fetching donors:', error);
@@ -32,7 +32,7 @@ const DataProvider = ({ children }) => {
   // Fetch patients
   const fetchPatients = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/patients/Patients');
+      const response = await axios.get('https://blood-bank-j5i9.onrender.com/patients/Patients');
       setPatients(response.data);
     } catch (error) {
       console.error('Error fetching patients:', error);
@@ -41,7 +41,7 @@ const DataProvider = ({ children }) => {
 
   const fetchBloodStock = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/Admin/dashboard');
+      const response = await axios.get('https://blood-bank-j5i9.onrender.com/Admin/dashboard');
       setBloodStock(response.data.bloodStock);
       setTotals({
         totalDonors: response.data.totalDonors,
@@ -62,7 +62,7 @@ const DataProvider = ({ children }) => {
     try {
       const currentDonor = localStorage.getItem("donor");
       const parsedDonor = JSON.parse(currentDonor);
-      const res = await axios.get(`http://localhost:3000/donors/donationHistoryStatus/${parsedDonor.donor._id}`);
+      const res = await axios.get(`https://blood-bank-j5i9.onrender.com/donors/donationHistoryStatus/${parsedDonor.donor._id}`);
       setDonorTotals(res.data)
       console.log(res.data);
       console.log(donorTotals)
@@ -75,7 +75,7 @@ const DataProvider = ({ children }) => {
     try {
       const currentPatient = JSON.parse(localStorage.getItem('patient'));
       console.log(currentPatient)
-      const res = await axios.get(`http://localhost:3000/patients/bloodRequestStats/${currentPatient.patient._id}`);
+      const res = await axios.get(`https://blood-bank-j5i9.onrender.com/patients/bloodRequestStats/${currentPatient.patient._id}`);
       setPatientTotals(res.data)
       console.log(res.data);
       console.log(patientTotals)
@@ -87,7 +87,7 @@ const DataProvider = ({ children }) => {
   const getDonationHistory = async()=>{
       try {
           const currentDonor = JSON.parse(localStorage.getItem('donor'));
-          const response = await axios.get(`http://localhost:3000/donors/donationHistory/${currentDonor.donor._id}`);
+          const response = await axios.get(`https://blood-bank-j5i9.onrender.com/donors/donationHistory/${currentDonor.donor._id}`);
           setHistory(response.data)
           console.log(response.data)
           
@@ -101,7 +101,7 @@ const DataProvider = ({ children }) => {
     try {
         const currentPatient = JSON.parse(localStorage.getItem('patient'));
         console.log(currentPatient)
-        const response = await axios.get(`http://localhost:3000/patients/bloodRequests/${currentPatient.patient._id}`);
+        const response = await axios.get(`https://blood-bank-j5i9.onrender.com/patients/bloodRequests/${currentPatient.patient._id}`);
         setBloodHistory(response.data)
         console.log(response.data)
         
@@ -113,7 +113,7 @@ const DataProvider = ({ children }) => {
 
 const UpdateDonor = async(donorId,updatedData)=>{
   try {
-    const response = await axios.put(`http://localhost:3000/donors/donor/${donorId}`,updatedData)
+    const response = await axios.put(`https://blood-bank-j5i9.onrender.com/donors/donor/${donorId}`,updatedData)
     console.log(response.data);
     
   } catch (error) {
@@ -124,7 +124,7 @@ const UpdateDonor = async(donorId,updatedData)=>{
 
 const UpdatePatient = async(patientId,updatedData)=>{
   try {
-    const response = await axios.put(`http://localhost:3000/patients/patient/${patientId}`,updatedData)
+    const response = await axios.put(`https://blood-bank-j5i9.onrender.com/patients/patient/${patientId}`,updatedData)
     console.log(response.data);
     
   } catch (error) {
