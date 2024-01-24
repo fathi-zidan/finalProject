@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import DonorSideMenu from '../components/DonorSideMenu'
 import DashBoard from '../components/DashBoard'
 import DonorTotalRequestMade from '../components/donorCards/DonorTotalRequestMade'
@@ -8,7 +8,10 @@ import DonorRejectedRequest from '../components/donorCards/DonorRejectedRequest'
 import DonorPendingRequest from '../components/donorCards/DonorPendingRequest'
 import PatientSideMenu from '../components/PatientSideMenu'
 function PatientHomePage() {
-  const {patientTotals} = useDataContext();
+  const {patientTotals,fetchPatientHistoryStatus} = useDataContext();
+  useEffect(()=>{
+    fetchPatientHistoryStatus();
+  },[])
   console.log(patientTotals)
   return (
     <div>
